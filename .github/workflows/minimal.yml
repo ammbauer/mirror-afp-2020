@@ -15,9 +15,9 @@ jobs:
       run: wget "http://isabelle.in.tum.de/dist/Isabelle2020_macos.tar.gz"
     - name: Untar isabelle
       run: tar -xf "Isabelle2020_macos.tar.gz"
-    - name: Build HOL-Library
+    - name: Build skip lists
       run: Isabelle2020.app/Isabelle/bin/isabelle build -d thys/ -b -v Skip_Lists
     - uses: actions/upload-artifact@v2
       with:
         name: skip_list_heaps
-        path: ~/.isabelle/heaps
+        path: ~/.isabelle/Isabelle2020/heaps
