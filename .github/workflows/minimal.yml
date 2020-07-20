@@ -15,6 +15,10 @@ jobs:
       run: wget "http://isabelle.in.tum.de/dist/Isabelle2020_macos.tar.gz"
     - name: Untar isabelle
       run: tar -xf "Isabelle2020_macos.tar.gz"
+    - name: create .isabelle/Isabelle2020/settings dir
+      run: mkdir -p ~/.isabelle/Isabelle2020/etc/
+    - name: Add .isabelle/Isabelle2020/etc/settings to run polyml in 64-bit mode
+      run: echo -e 'ML_PLATFORM="$ISABELLE_PLATFORM64"\nML_HOME="$ML_HOME/../$ML_PLATFORM"\nML_OPTIONS="--minheap 4G --maxheap 20G"' > ~/.isabelle/Isabelle2020/etc/settings
     - name: Build skip lists
       run: Isabelle2020.app/Isabelle/bin/isabelle build -d thys/ -b -v Skip_Lists
     - uses: actions/upload-artifact@v2
